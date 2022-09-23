@@ -133,14 +133,14 @@ jobs:
     - name: Azure Key Vault Action
       uses: Azure/get-keyvault-secrets@v1
       with:
-        keyvault: "kv-pethouse"
+        keyvault: "kv-pethouse-prod"
         secrets: 'GlobalPassword, SimulatedFailureChance'
       id: myGetSecretAction
         
     - name: 'Azure app setting update'        
       uses: azure/appservice-settings@v1
       with:
-        app-name: 'pethouse'
+        app-name: 'pethouseprod'
         app-settings-json: |
           [
             {
