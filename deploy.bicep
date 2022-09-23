@@ -32,6 +32,17 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
   }
 }
 
+resource webAppSlot 'Microsoft.Web/sites/slots@2021-02-01' = {
+    name: 'staging2'
+    parent: webApp
+    location: location
+    properties: {
+    }
+    dependsOn: [
+        webApp
+    ]
+}
+
 var yourAadUserObjectId= '68b6c62e-3536-4bdf-91a8-6b2a805d3ac4'
 
 var userObjectIdsToGrantAccessPoliciesThatAllowFullControlForAllEntitiesInKeyVault = [
@@ -130,3 +141,5 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
     accessPolicies: keyVaultAccessPolicies
   }
 }
+
+
