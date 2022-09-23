@@ -96,7 +96,7 @@ jobs:
     env:
       PROD_APP_SERVICE_PLAN_NAME: pet_house_app_service_prod
       PROD_KEY_VAULT_NAME: kv-pethouse-prod
-      PROD_WEB_APP_NAME: pethouse_prod
+      PROD_WEB_APP_NAME: pethouseprod
     steps:
     - name: download-artifact
       uses: actions/download-artifact@v3
