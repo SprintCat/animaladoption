@@ -52,9 +52,39 @@ jobs:
         name: drop
         path: ./taa-portal/
 
+    - name: 'Azure login'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.SP_PET_HOUSE }}
+
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with:
         app-name: pethouse
         publish-profile: ${{ secrets.PET_HOUSE_PUBLISH_PROFILE }}
         package: ./taa-portal/
+    
+    - name: Azure Key Vault Action
+      uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: "kv-pethouse"
+        secrets: 'GlobalPassword, SimulatedFailureChance'
+      id: myGetSecretAction
+        
+    - name: 'Azure app setting update'        
+      uses: azure/appservice-settings@v1
+      with:
+        app-name: 'pethouse'
+        app-settings-json: |
+          [
+            {
+              "name": "GlobalPassword",
+              "value": " ${{ steps.myGetSecretAction.outputs.GlobalPassword }}",
+              "slotSetting": false
+            },
+            {
+              "name": "SimulatedFailureChance",
+              "value": "${{ steps.myGetSecretAction.outputs.SimulatedFailureChance  }}",
+              "slotSetting": false
+            }
+          ]
