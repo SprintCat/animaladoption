@@ -34,7 +34,7 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
 
 resource webAppSlot 'Microsoft.Web/sites/slots@2021-02-01' = {
     name: 'staging2'
-    parent: webApp
+    parent: webAppName
     location: location
     properties: {
     }
