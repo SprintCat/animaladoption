@@ -136,6 +136,7 @@ jobs:
         keyvault: "kv-pethouse-prod"
         secrets: 'GlobalPassword, SimulatedFailureChance'
       id: myGetSecretAction
+      
         
     - name: 'Azure app setting update'        
       uses: azure/appservice-settings@v1
