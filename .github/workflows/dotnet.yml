@@ -128,7 +128,7 @@ jobs:
       with:
         app-name: pethouseprod
         package: ./taa-portal/
-        slot-name: staging
+        slot-name: production
         
     - name: Azure Key Vault Action
       uses: Azure/get-keyvault-secrets@v1
