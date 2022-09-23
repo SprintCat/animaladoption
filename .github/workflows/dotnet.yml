@@ -126,8 +126,7 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: pethouse
-        publish-profile: ${{ secrets.PET_HOUSE_PUBLISH_PROFILE }}
+        app-name: pethouseprod
         package: ./taa-portal/
         
     - name: Azure Key Vault Action
